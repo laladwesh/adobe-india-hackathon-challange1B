@@ -1,11 +1,8 @@
-# pdf_utils.py
-
 from pypdf import PdfReader
 from typing import List, Tuple
 import re
-import fitz  # PyMuPDF
+import fitz
 
-# Title‑case detector
 _title_re = re.compile(r"\b[A-Z][a-z]+\b")
 
 def extract_heading_from_text(text: str) -> str:
@@ -23,12 +20,10 @@ def extract_heading_from_text(text: str) -> str:
             continue
         if len(_title_re.findall(ln)) >= 2:
             return ln
-    # then first letter‑starting line
     for line in text.splitlines():
         ln = line.strip()
         if ln and ln[0].isalpha():
             return ln[:120]
-    # ultimate fallback
     return "Untitled Section"
 
 def _valid_heading(s: str) -> bool:
@@ -104,12 +99,10 @@ def load_sections(pdf_path: str) -> List[dict]:
     pages_seen = set()
     sections = []
 
-    # 1) bookmarks
     for pg, heading, text in extract_sections_from_pdf(pdf_path):
         sections.append({"page": pg, "section_title": heading, "text": text})
         pages_seen.add(pg)
 
-    # 2) layout fallback
     for pg, heading, text in extract_layout_headings(pdf_path):
         if pg in pages_seen:
             continue
