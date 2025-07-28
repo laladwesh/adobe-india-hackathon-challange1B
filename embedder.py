@@ -1,4 +1,3 @@
-# embedder.py
 from sentence_transformers import SentenceTransformer
 import numpy as np
 
@@ -13,8 +12,6 @@ class Embedder:
         Initializes the Embedder with a specified Sentence Transformer model.
         The model is explicitly loaded onto the CPU as per the hackathon rules.
         """
-        # Load the specified model using the SentenceTransformer class.
-        # This class correctly loads the pre-cached model for offline use.
         self.model = SentenceTransformer(model_name, device='cpu')
         print(f"Device set to use {self.model.device}")
 
@@ -22,8 +19,6 @@ class Embedder:
         """
         Encodes a list of texts into embeddings using the optimized model.
         """
-        # Use the model's encode method, which is highly optimized.
-        # We turn off the progress bar as it's not needed for the final run.
         return self.model.encode(
             texts,
             batch_size=batch_size,
