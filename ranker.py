@@ -1,4 +1,3 @@
-# ranker.py
 import numpy as np
 from numpy.linalg import norm
 from typing import List, Tuple
@@ -23,13 +22,10 @@ def rank_sections(
     Returns top_k sections ranked by similarity to the persona+job prompt.
     Each entry is (section_index, section_text, similarity_score).
     """
-    # Embed sections and the prompt
     section_embeds = embedder.encode(section_texts)
     prompt_embed = embedder.encode([persona_job])[0]  # single vector
 
-    # Compute similarities
     sims = (section_embeds @ prompt_embed) / (norm(section_embeds, axis=1) * norm(prompt_embed) + 1e-10)
     
-    # Get top_k
     ranked_idx = np.argsort(-sims)[:top_k]
     return [(int(i), section_texts[i], float(sims[i])) for i in ranked_idx]
