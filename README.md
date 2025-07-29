@@ -141,8 +141,8 @@ See the `examples/` directory for sample inputs and expected outputs.
 
 ## Contact & License
 
-**Developer:** [Your Name]  
-**Email:** [your.email@example.com]  
+**Developer:** [Avinash Gupta, Arunika Naskar]  
+**Email:** guptaavinash302@gmail.com, arunikanaskar11@gmail.com]  
 **Event:** Adobe India "Connecting the Dots" Hackathon - Round 1B
 
 This project is developed for educational and competition purposes. Please refer to the Adobe Hackathon terms and conditions for usage rights.
